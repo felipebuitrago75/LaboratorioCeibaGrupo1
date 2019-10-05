@@ -51,12 +51,14 @@ public class Prestamo {
 
 	/**
 	 * @param idPrestamo
+	 * @param libro
 	 * @param fechaSolicitud
 	 * @param fechaEntrega
 	 * @param nombreUsuario
 	 */
-	public Prestamo(Libro libro, Date fechaSolicitud, Date fechaEntrega, String nombreUsuario) {
+	public Prestamo(int idPrestamo, Libro libro, Date fechaSolicitud, Date fechaEntrega, String nombreUsuario) {
 		super();
+		this.idPrestamo = idPrestamo;
 		this.libro = libro;
 		this.fechaSolicitud = fechaSolicitud;
 		this.fechaEntrega = fechaEntrega;

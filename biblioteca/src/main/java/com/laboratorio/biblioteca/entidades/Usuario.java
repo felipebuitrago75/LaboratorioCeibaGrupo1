@@ -2,6 +2,9 @@ package com.laboratorio.biblioteca.entidades;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
 /**
@@ -14,6 +17,12 @@ import javax.persistence.Table;
 @Table(name = "USUARIO")
 public class Usuario {
 
+	/**
+	 * Atributo que representa el identificador del usuario
+	 */
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long idUsuario;
 	/**
 	 * Atributo que representa el nombre del usuario
 	 */
@@ -33,8 +42,9 @@ public class Usuario {
 	 * @param contrasenia   contraseña del usuario
 	 * @param biblioteca    biblioteca a la cual acude el usuario
 	 */
-	public Usuario(String nombreUsuario, String contrasenia) {
+	public Usuario(Long idUsuario, String nombreUsuario, String contrasenia) {
 		super();
+		this.idUsuario = idUsuario;
 		this.nombreUsuario = nombreUsuario;
 		this.contrasenia = contrasenia;
 	}
@@ -44,6 +54,20 @@ public class Usuario {
 	 */
 	public Usuario() {
 		super();
+	}
+
+	/**
+	 * @return the idUsuario
+	 */
+	public Long getIdUsuario() {
+		return idUsuario;
+	}
+
+	/**
+	 * @param idUsuario the idUsuario to set
+	 */
+	public void setIdUsuario(Long idUsuario) {
+		this.idUsuario = idUsuario;
 	}
 
 	/**
