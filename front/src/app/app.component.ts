@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { FormGroup, FormControl, Validators } from "@angular/forms";
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: "app-root",
@@ -9,12 +10,11 @@ import { FormGroup, FormControl, Validators } from "@angular/forms";
 export class AppComponent implements OnInit {
   public myForm: FormGroup;
 
+  constructor(private translate: TranslateService){
+  }
+  
   ngOnInit() {
-    this.myForm = new FormGroup({
-      name: new FormGroup({
-        firstName: new FormControl("", Validators.required),
-        lastName: new FormControl("", Validators.required)
-      }),
+    this.myForm = new FormGroup({      
       email: new FormControl("", [
         Validators.required,
         Validators.pattern("[^ @]*@[^ @]*")
@@ -32,9 +32,9 @@ export class AppComponent implements OnInit {
    * 
    * 
    */
-  login(){
+  login(){    
     let controls = this.myForm.controls;
-    if (this.myForm.invalid) {
+    if (this.myForm.invalid) {      
 			Object.keys(controls).forEach(controlName =>
 				controls[controlName].markAsTouched()
 			);
@@ -42,10 +42,24 @@ export class AppComponent implements OnInit {
     }
     
     const authData = {
-			userName: controls['email'].value,
+			email: controls['email'].value,
 			password: controls['password'].value
-    };
-    
-    console.log(authData);
+    };    
   }
+
+  /**
+   * Validates whether a field follows the validation rules
+   * 
+   * @param controlName name of the control being evaluated
+   * @param validationType type of the validation to be evaluated
+   */
+  controlHasError(controlName: string, validationType: string): boolean {
+		const control = this.myForm.controls[controlName];
+		if (!control) {
+			return false;
+		}
+
+		const result = control.hasError(validationType) && (control.dirty || control.touched);
+		return result;
+	}
 }
