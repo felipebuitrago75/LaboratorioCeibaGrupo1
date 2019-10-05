@@ -4,3 +4,4 @@ Integrantes:
 - Jhon Alexander Lara
 - Daniel Mauricio Valencia Gómez
 - Andres Fernando Jimenez Castro
+- Andres Felipe Buitrago Feria
