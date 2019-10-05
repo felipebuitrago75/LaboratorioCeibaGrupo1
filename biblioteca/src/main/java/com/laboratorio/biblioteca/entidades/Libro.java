@@ -1,6 +1,7 @@
 package com.laboratorio.biblioteca.entidades;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -44,7 +45,7 @@ public class Libro {
 	 * Atributo que representa los prestamos que tiene el libro
 	 */
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "idPrestamo")
-	private ArrayList<Prestamo> prestamos;
+	private List<Prestamo> prestamos;
 
 	public Libro(String isbn, String nombre, int cantidadInventario, int cantidadDisponible) {
 
