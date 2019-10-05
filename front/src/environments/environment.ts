@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  api_url: 'http://innproject-v3.local/api/v3.0/'
+  api_url: 'http://localhost:8080/'
 };
 
 /*

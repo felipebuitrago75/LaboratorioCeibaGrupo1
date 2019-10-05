@@ -42,7 +42,7 @@ export class RestService {
   }
 
   queryExternalApi(route) {
-    let repos = this.http.get(route);
+    let repos = this.http.get(this.apiUrl.concat(route));
     return repos;
   }
 }
