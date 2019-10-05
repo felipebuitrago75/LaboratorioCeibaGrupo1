@@ -1,16 +1,13 @@
 package com.laboratorio.biblioteca.entidades;
 
-import java.util.ArrayList;
 import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -51,12 +48,6 @@ public class Prestamo {
 	 */
 	@Column(name = "NOMBRE_USUARIO")
 	private String nombreUsuario;
-
-	/**
-	 * Atributo que representa los prestamos que tiene el libro
-	 */
-	@OneToMany(fetch = FetchType.EAGER, mappedBy = "idPrestamo")
-	private ArrayList<Prestamo> prestamos;
 
 	/**
 	 * @param idPrestamo
