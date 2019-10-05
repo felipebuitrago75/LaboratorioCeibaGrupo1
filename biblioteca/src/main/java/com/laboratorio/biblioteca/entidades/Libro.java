@@ -5,9 +5,6 @@ import java.util.ArrayList;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -21,12 +18,6 @@ import javax.persistence.Table;
 @Table(name = "LIBRO")
 public class Libro {
 
-	/**
-	 * Atributo que representa el identificador del libro
-	 */
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int idLibro;
 	/**
 	 * Atributo que representa el isbn del libro
 	 */
@@ -55,9 +46,8 @@ public class Libro {
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "idPrestamo")
 	private ArrayList<Prestamo> prestamos;
 
-	public Libro(int idLibro, String isbn, String nombre, int cantidadInventario, int cantidadDisponible) {
+	public Libro(String isbn, String nombre, int cantidadInventario, int cantidadDisponible) {
 
-		this.idLibro = idLibro;
 		this.isbn = isbn;
 		this.nombre = nombre;
 		this.cantidadInventario = cantidadInventario;
@@ -106,20 +96,6 @@ public class Libro {
 	 */
 	public String getIsbn() {
 		return isbn;
-	}
-
-	/**
-	 * @return the idLibro
-	 */
-	public int getIdLibro() {
-		return idLibro;
-	}
-
-	/**
-	 * @param idLibro the idLibro to set
-	 */
-	public void setIdLibro(int idLibro) {
-		this.idLibro = idLibro;
 	}
 
 	/**
