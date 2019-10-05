@@ -3,11 +3,13 @@ package com.laboratorio.biblioteca.entidades;
 import java.util.ArrayList;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 /**
  * Clase encargada de modelar el objeto libro
@@ -15,6 +17,8 @@ import javax.persistence.OneToMany;
  * @author JhonLara
  *
  */
+@Entity
+@Table(name = "LIBRO")
 public class Libro {
 
 	/**

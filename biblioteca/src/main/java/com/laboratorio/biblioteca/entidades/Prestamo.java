@@ -4,12 +4,14 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 /**
  * Clase encargada de modelar el objeto prestamo
@@ -17,6 +19,8 @@ import javax.persistence.OneToMany;
  * @author JhonLara
  *
  */
+@Entity
+@Table(name = "PRESTAMO")
 public class Prestamo {
 
 	/**
