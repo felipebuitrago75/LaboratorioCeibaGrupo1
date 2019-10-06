@@ -83,6 +83,8 @@ public class BibliotecaServicioImpl implements BibliotecaServicio {
 					Date fechaMaximaEntrega = validarFechaIsbn(isbn);
 					Prestamo prestamo = new Prestamo(libro, new Date(), fechaMaximaEntrega, nombre);
 					prestamoRepositorio.save(prestamo);
+					libro.setCantidadDisponible(libro.getCantidadDisponible()-1);
+					agregarLibro(libro);
 				}
 			} else {
 
