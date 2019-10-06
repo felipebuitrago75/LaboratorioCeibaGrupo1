@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 import com.laboratorio.biblioteca.entidades.Prestamo;
 
 /**
- * Se establece repositorio para la entidad prestamo
+ * Se establece repositorio para la entidad prestamo 
  * 
  * @author Andrés Felipe
  *
