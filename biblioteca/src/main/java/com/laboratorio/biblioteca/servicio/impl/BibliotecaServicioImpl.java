@@ -16,20 +16,22 @@ import org.springframework.stereotype.Service;
 
 import com.laboratorio.biblioteca.entidades.Libro;
 import com.laboratorio.biblioteca.entidades.Usuario;
-import com.laboratorio.biblioteca.repositorio.BibliotecaRepositorio;
+import com.laboratorio.biblioteca.repositorio.LibroRepositorio;
+import com.laboratorio.biblioteca.repositorio.UsuarioRepositorio;
 import com.laboratorio.biblioteca.servicio.BibliotecaServicio;
 
 @Service
 public class BibliotecaServicioImpl implements BibliotecaServicio {
 
 	@Autowired
-	private BibliotecaRepositorio bibliotecaRepositorio;
-
+	private UsuarioRepositorio usuarioRepositorio;
+	@Autowired
+	private LibroRepositorio libroRepositorio;
 	@PersistenceContext
 	private EntityManager entityManager;
 
 	public Boolean validarUsuario(Usuario usuario) {
-		List<Usuario> usuarios = bibliotecaRepositorio.findAll();
+		List<Usuario> usuarios = usuarioRepositorio.findAll();
 		for (Usuario usuarioBD : usuarios) {
 			if (usuarioBD.getNombreUsuario().equalsIgnoreCase(usuario.getNombreUsuario())
 					&& usuarioBD.getContrasenia().equals(usuario.getContrasenia())) {
@@ -50,7 +52,15 @@ public class BibliotecaServicioImpl implements BibliotecaServicio {
 
 		query.select(libro).where(cb.or(predicates.toArray(new Predicate[predicates.size()])));
 
-		return (Libro) entityManager.createQuery(query).getResultList();
+		return (Libro) entityManager.createQuery(query).getSingleResult();
 	}
 
+	@Override
+	public void agregarLibro(Libro libro) {
+		libroRepositorio.save(libro);
+	}
+	@Override
+	public void eliminarLibro(Long Isbn) {
+		libroRepositorio.deleteById(Isbn);
+	}
 }
