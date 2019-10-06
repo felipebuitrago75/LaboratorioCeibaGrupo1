@@ -6,14 +6,11 @@
   <div class="login">
     <form [formGroup]="myForm">
       <div class="form-group">
-        <label>{{ "forms.email" | translate }}</label>
+        <label>{{ "forms.username" | translate }}</label>
         <input type="email" class="form-control" formControlName="email" />
         <span *ngIf="controlHasError('email', 'required')">
           <strong>{{ "validation.required_field" | translate }}</strong>
-        </span>
-        <span *ngIf="controlHasError('email', 'pattern')">
-            <strong>{{ "validation.incorrect_email_format" | translate }}</strong>
-          </span>
+        </span>        
       </div>
       <div class="form-group">
         <label>{{ "forms.password" | translate }}</label>
