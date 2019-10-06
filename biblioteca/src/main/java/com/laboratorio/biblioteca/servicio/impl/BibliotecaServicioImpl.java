@@ -1,5 +1,8 @@
 package com.laboratorio.biblioteca.servicio.impl;
 
+import java.time.DayOfWeek;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.Date;
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -94,8 +97,9 @@ public class BibliotecaServicioImpl implements BibliotecaServicio {
 					Date fechaMaximaEntrega = validarFechaIsbn(isbn);
 					Prestamo prestamo = new Prestamo(libro.getIsbn(), new Date(), fechaMaximaEntrega, nombre);
 					prestamoRepositorio.save(prestamo);
+					
 					libro.setCantidadDisponible(libro.getCantidadDisponible() - 1);
-					agregarLibro(libro);
+					libroRepositorio.save(libro);
 				}
 			} else {
 
@@ -167,23 +171,17 @@ public class BibliotecaServicioImpl implements BibliotecaServicio {
 	 * 
 	 * @return la fecha m?xima de entrega
 	 */
-	@SuppressWarnings("deprecation")
 	public Date obtenerFecha() {
-		Date FechaEjecucion = new Date();
-		Date fechaDevolucion = new Date();
-		int diferenciaDias = 0;
-
-		int diasTotal = 0;
-		while (diferenciaDias != 15) {
-
-			if (FechaEjecucion.getDay() != 0 && FechaEjecucion.getDay() != 6) {
-				diferenciaDias++;
+		LocalDate resultado = LocalDate.now();
+		int addedDays = 0;
+		while (addedDays < 15) {
+			resultado = resultado.plusDays(1);
+			if ( resultado.getDayOfWeek() != DayOfWeek.SUNDAY) {
+				++addedDays;
 			}
-			FechaEjecucion.setDate(FechaEjecucion.getDate() + 1);
-			diasTotal++;
 		}
-		fechaDevolucion.setDate(diasTotal + 1);
-		return fechaDevolucion;
+
+		return Date.from(resultado.atStartOfDay(ZoneId.systemDefault()).toInstant());
 	}
 
 	@Override
@@ -202,6 +200,5 @@ public class BibliotecaServicioImpl implements BibliotecaServicio {
 		List<Prestamo> librosPrestados = prestamoRepositorio.findAll();
 		return librosPrestados;
 	}
-
 
 }
