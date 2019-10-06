@@ -25,7 +25,7 @@ public class Prestamo {
 	 */
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int idPrestamo;
+	private Long idPrestamo;
 
 	/**
 	 * Atributo que representa el libre del prestamo
@@ -56,9 +56,8 @@ public class Prestamo {
 	 * @param fechaEntrega
 	 * @param nombreUsuario
 	 */
-	public Prestamo(int idPrestamo, Libro libro, Date fechaSolicitud, Date fechaEntrega, String nombreUsuario) {
+	public Prestamo(Libro libro, Date fechaSolicitud, Date fechaEntrega, String nombreUsuario) {
 		super();
-		this.idPrestamo = idPrestamo;
 		this.libro = libro;
 		this.fechaSolicitud = fechaSolicitud;
 		this.fechaEntrega = fechaEntrega;
@@ -75,14 +74,14 @@ public class Prestamo {
 	/**
 	 * @return the idPrestamo
 	 */
-	public int getIdPrestamo() {
+	public Long getIdPrestamo() {
 		return idPrestamo;
 	}
 
 	/**
 	 * @param idPrestamo the idPrestamo to set
 	 */
-	public void setIdPrestamo(int idPrestamo) {
+	public void setIdPrestamo(Long idPrestamo) {
 		this.idPrestamo = idPrestamo;
 	}
 
