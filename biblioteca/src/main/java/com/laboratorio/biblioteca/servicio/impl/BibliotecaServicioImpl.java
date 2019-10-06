@@ -185,10 +185,4 @@ public class BibliotecaServicioImpl implements BibliotecaServicio {
 
 	}
 
-	@Override
-	public void agregarPrestamo(Prestamo prestamo) {
-		prestamoRepositorio.save(prestamo);
-
-	}
-
 }

@@ -22,12 +22,11 @@ public interface BibliotecaServicio {
 	 * @author JhonLara
 	 */
 	public List<Libro> obtenerLibrosDisponibles();
-/**
+
+	/**
 	 * Método encargado de realizar el prestamo del libro
 	 * 
 	 * @author JhonLara
 	 */
 	public void prestarLibro(Long isbn, String nombre);
-
-	public void agregarPrestamo(Prestamo prestamo);
 }

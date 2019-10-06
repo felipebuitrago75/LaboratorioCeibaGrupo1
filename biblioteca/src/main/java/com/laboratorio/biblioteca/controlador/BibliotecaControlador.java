@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.laboratorio.biblioteca.entidades.Libro;
-import com.laboratorio.biblioteca.entidades.Prestamo;
 import com.laboratorio.biblioteca.entidades.Usuario;
 import com.laboratorio.biblioteca.servicio.BibliotecaServicio;
 
@@ -44,8 +43,8 @@ public class BibliotecaControlador {
 		return bibliotecaServicio.buscarLibroIsbn(isbn);
 	}
 
-	@PostMapping("/agregarPrestamo")
-	public void agregarPrestamo(Prestamo prestamo) {
-		bibliotecaServicio.agregarPrestamo(prestamo);
+	@PostMapping("/prestarLibro/{ISBN}/{NOMBRE}")
+	public void agregarPrestamo(@PathVariable(name = "ISBN")Long isbn, @PathVariable(name = "NOMBRE")String nombre) {
+		bibliotecaServicio.prestarLibro(isbn, nombre);
 	}
 }
