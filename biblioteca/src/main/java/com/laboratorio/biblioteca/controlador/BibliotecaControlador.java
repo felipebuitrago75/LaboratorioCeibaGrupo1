@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.laboratorio.biblioteca.dto.LibroPrestadoDTO;
 import com.laboratorio.biblioteca.entidades.Libro;
 import com.laboratorio.biblioteca.entidades.Prestamo;
 import com.laboratorio.biblioteca.entidades.Usuario;
