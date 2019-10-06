@@ -74,16 +74,16 @@ public class BibliotecaServicioImpl implements BibliotecaServicio {
 
 			boolean prestado = validarPrestamo(libro);
 			// Se valida si el libro ya se encuentra en prestamo
-			if (!prestado) {
+			if (prestado) {
 				// Se asigna el valor que devuelve el metodo de verificaci?n
 				palindromo = esPalindromo(isbn.toString());
 				if (palindromo == true) {
 					throw new UnsupportedOperationException(PALIDROMO);
 				} else {
 					Date fechaMaximaEntrega = validarFechaIsbn(isbn);
-					Prestamo prestamo = new Prestamo(libro, new Date(), fechaMaximaEntrega, nombre);
+					Prestamo prestamo = new Prestamo(libro.getIsbn(), new Date(), fechaMaximaEntrega, nombre);
 					prestamoRepositorio.save(prestamo);
-					libro.setCantidadDisponible(libro.getCantidadDisponible()-1);
+					libro.setCantidadDisponible(libro.getCantidadDisponible() - 1);
 					agregarLibro(libro);
 				}
 			} else {
@@ -173,7 +173,7 @@ public class BibliotecaServicioImpl implements BibliotecaServicio {
 			FechaEjecucion.setDate(FechaEjecucion.getDate() + 1);
 			diasTotal++;
 		}
-		fechaDevolucion.setDate(diasTotal);
+		fechaDevolucion.setDate(diasTotal+1);
 		return fechaDevolucion;
 	}
 

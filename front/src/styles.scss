@@ -1,1 +1,24 @@
 /* You can add global styles to this file, and also import other style files */
+.spacer20 {
+  height: 20px;
+}
+
+.pull-right {
+  float: right;
+}
+
+input.ng-valid.ng-dirty,
+input.ng-valid.ng-touched {
+  border: 1px green solid;
+}
+
+input.ng-invalid.ng-dirty,
+input.ng-invalid.ng-touched {
+  border: 1px red solid;
+}
+
+.create-container {
+  margin: 0 auto;
+  max-width: 600px;
+  text-align: center;
+}
