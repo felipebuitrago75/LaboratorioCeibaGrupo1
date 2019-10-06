@@ -56,7 +56,17 @@ public class BibliotecaServicioImpl implements BibliotecaServicio {
 	@Override
 	public void agregarLibro(Libro libro) {
 
-		libroRepositorio.save(libro);
+		try {
+			Optional<Libro> optLibro = libroRepositorio.findById(libro.getIsbn());
+			Libro libroActualizar = optLibro.get();
+			libroActualizar.setCantidadDisponible(libro.getCantidadDisponible() + 1);
+			libroActualizar.setCantidadInventario(libro.getCantidadInventario() + 1);
+			libroRepositorio.save(libroActualizar);
+		} catch (NoSuchElementException nse) {
+
+			libroRepositorio.save(libro);
+		}
+
 	}
 
 	@Override
@@ -173,7 +183,7 @@ public class BibliotecaServicioImpl implements BibliotecaServicio {
 			FechaEjecucion.setDate(FechaEjecucion.getDate() + 1);
 			diasTotal++;
 		}
-		fechaDevolucion.setDate(diasTotal+1);
+		fechaDevolucion.setDate(diasTotal + 1);
 		return fechaDevolucion;
 	}
 
@@ -186,6 +196,12 @@ public class BibliotecaServicioImpl implements BibliotecaServicio {
 			return null;
 		}
 
+	}
+
+	@Override
+	public List<Prestamo> buscarLibrosPrestados() {
+		List<Prestamo> librosPrestados = prestamoRepositorio.findAll();
+		return librosPrestados;
 	}
 
 }

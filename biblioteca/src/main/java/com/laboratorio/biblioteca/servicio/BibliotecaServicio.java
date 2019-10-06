@@ -2,7 +2,9 @@ package com.laboratorio.biblioteca.servicio;
 
 import java.util.List;
 
+import com.laboratorio.biblioteca.dto.LibroPrestadoDTO;
 import com.laboratorio.biblioteca.entidades.Libro;
+import com.laboratorio.biblioteca.entidades.Prestamo;
 import com.laboratorio.biblioteca.entidades.Usuario;
 
 public interface BibliotecaServicio {
@@ -28,4 +30,6 @@ public interface BibliotecaServicio {
 	 * @author JhonLara
 	 */
 	public void prestarLibro(Long isbn, String nombre);
+	
+	public List<Prestamo> buscarLibrosPrestados();
 }
