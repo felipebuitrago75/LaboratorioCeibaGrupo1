@@ -56,9 +56,8 @@ public class Prestamo {
 	 * @param fechaEntrega
 	 * @param nombreUsuario
 	 */
-	public Prestamo(Long idPrestamo, Libro libro, Date fechaSolicitud, Date fechaEntrega, String nombreUsuario) {
+	public Prestamo(Libro libro, Date fechaSolicitud, Date fechaEntrega, String nombreUsuario) {
 		super();
-		this.idPrestamo = idPrestamo;
 		this.libro = libro;
 		this.fechaSolicitud = fechaSolicitud;
 		this.fechaEntrega = fechaEntrega;

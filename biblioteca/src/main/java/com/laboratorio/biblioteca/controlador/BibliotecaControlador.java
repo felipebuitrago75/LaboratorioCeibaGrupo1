@@ -34,7 +34,7 @@ public class BibliotecaControlador {
 
 	@GetMapping("/obtenerLibroPorIsbn/{ISBN}")
 	@Query(value = "SELECT l FROM Libro l WHERE l.isbn IN :isbn")
-	public Libro obtenerLibroPorIsbn(@PathVariable(name = "ISBN") String Isbn) {
+	public Libro obtenerLibroPorIsbn(@PathVariable(name = "ISBN") Long Isbn) {
 		return bibliotecaServicio.obtenerLibroPorIsbn(Isbn);
 	}
 

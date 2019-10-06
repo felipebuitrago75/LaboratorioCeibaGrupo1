@@ -16,5 +16,12 @@ public interface BibliotecaServicio {
 	 * 
 	 * @author JhonLara
 	 */
-	public Libro obtenerLibroPorIsbn(String isbn);
+	public Libro obtenerLibroPorIsbn(Long isbn);
+
+	/**
+	 * Método encargado de realizar el prestamo del libro
+	 * 
+	 * @author JhonLara
+	 */
+	public void prestarLibro(Long isbn, String nombre);
 }
