@@ -1,30 +1,36 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <div class="login-container">
   <h1>
-    Login
+      {{ "forms.login" | translate }}
   </h1>
   <div class="login">
     <form [formGroup]="myForm">
       <div class="form-group">
-        <label>Email</label>
+        <label>{{ "forms.email" | translate }}</label>
         <input type="email" class="form-control" formControlName="email" />
         <span *ngIf="controlHasError('email', 'required')">
-          <strong>{{ "auth.validation.required_field" | translate }}</strong>
+          <strong>{{ "validation.required_field" | translate }}</strong>
         </span>
+        <span *ngIf="controlHasError('email', 'pattern')">
+            <strong>{{ "validation.incorrect_email_format" | translate }}</strong>
+          </span>
       </div>
       <div class="form-group">
-        <label>Password</label>
+        <label>{{ "forms.password" | translate }}</label>
         <input
           type="password"
           class="form-control"
           formControlName="password"
         />
         <span *ngIf="controlHasError('password', 'required')">
-          <strong>{{ "auth.validation.required_field" | translate }}</strong>
+          <strong>{{ "validation.required_field" | translate }}</strong>
         </span>
+        <span *ngIf="controlHasError('password', 'minLength')">
+            <strong>{{ "validation.8_characters_minimum" | translate }}</strong>
+          </span>
       </div>
       <button class="btn btn-primary" (click)="login()">
-        Ingresar
+          {{ "forms.login" | translate }}
       </button>
     </form>
   </div>

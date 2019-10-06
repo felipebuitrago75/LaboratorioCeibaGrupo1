@@ -1,6 +1,6 @@
 export interface Book {
-    isbn: number;
-    nombre: string;  
-    cantidadInventario: number;  
-    cantidadDisponible: number;  
+    ISBN: number;
+    NOMBRE: string;  
+    CANTIDAD_INVENTARIO: number;  
+    CANTIDAD_DISPONIBLE: number;  
 }

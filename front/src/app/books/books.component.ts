@@ -13,32 +13,7 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class BooksComponent implements OnInit {
 
-  public books: Book[] = [
-    {      
-      isbn: 98765,
-      nombre: 'bookName',
-      cantidadInventario: 10,
-      cantidadDisponible:10    
-    },
-    {      
-      isbn: 98765,
-      nombre: 'bookName',
-      cantidadInventario: 10,
-      cantidadDisponible:10    
-    },
-    {      
-      isbn: 98765,
-      nombre: 'bookName',
-      cantidadInventario: 10,
-      cantidadDisponible:10    
-    },
-    {      
-      isbn: 98765,
-      nombre: 'bookName',
-      cantidadInventario: 10,
-      cantidadDisponible:10    
-    }
-  ];
+  public books: Book[] = [];
 
   public page:number = 1;
   public pageSize:number = 4;
@@ -100,7 +75,20 @@ export class BooksComponent implements OnInit {
    * @param bookIsbn isbn book to delete
    */
   private deleteBook(bookIsbn){
-    console.log('delete');
+    let url = `eliminarLibro/${bookIsbn}`;
+    this.service.queryDeleteRegular(url).subscribe(
+      response => {
+        let result = response.json();
+        if (result) {          
+          //this.router.navigate(["/books"]);        
+        } else {          
+          console.log('error');
+        }
+      },
+      err => {
+        console.log(err);
+      }
+    );
   }
 
 }

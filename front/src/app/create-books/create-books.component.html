@@ -1,35 +1,42 @@
 <div class="create-container">
   <h1 *ngIf="!editing">
-    Crear libro
+      {{ "forms.create_book" | translate }}
   </h1>
   <h1 *ngIf="editing">
-    Editar libro
+      {{ "forms.edit_book" | translate }}
   </h1>
   <div class="form">
     <form [formGroup]="myForm">
       <div class="form-group">
-        <label>ISBN</label>
+        <label>{{ "forms.isbn" | translate }}</label>
         <input type="number" class="form-control" formControlName="isbn" />
         <span *ngIf="controlHasError('isbn', 'required')">
-          <strong>{{ "auth.validation.required_field" | translate }}</strong>
+          <strong>{{ "validation.required_field" | translate }}</strong>
         </span>
       </div>
       <div class="form-group">
-        <label>Nombre</label>
+        <label>{{ "forms.name" | translate }}</label>
         <input type="text" class="form-control" formControlName="name" />
         <span *ngIf="controlHasError('name', 'required')">
-          <strong>{{ "auth.validation.required_field" | translate }}</strong>
+          <strong>{{ "validation.required_field" | translate }}</strong>
         </span>
       </div>
       <div class="form-group">
-        <label>Cantidad en inventario</label>
+        <label>{{ "forms.inventory" | translate }}</label>
         <input type="number" class="form-control" formControlName="quantity" />
         <span *ngIf="controlHasError('quantity', 'required')">
-          <strong>{{ "auth.validation.required_field" | translate }}</strong>
+          <strong>{{ "validation.required_field" | translate }}</strong>
         </span>
       </div>
+      <div class="form-group">
+          <label>{{ "forms.available" | translate }}</label>
+          <input type="number" class="form-control" formControlName="available_quantity" />
+          <span *ngIf="controlHasError('available_quantity', 'required')">
+            <strong>{{ "validation.required_field" | translate }}</strong>
+          </span>
+        </div>
       <button class="btn btn-primary" (click)="store()">
-        Guardar
+          {{ "forms.save" | translate }}
       </button>
     </form>
   </div>

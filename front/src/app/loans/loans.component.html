@@ -1,0 +1,32 @@
+<div class="spacer20"></div>
+<div class="container">
+  <div class="page-header">
+    <div class="row">
+      <div class="col-md-10"><h1>{{"forms.loans" | translate}}</h1></div>
+      <div class="col-md-2">
+        <button class="btn btn-primary pull-right" routerLink="/books-loan">
+          {{"forms.new" | translate}}
+        </button>
+      </div>
+    </div>
+  </div>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">{{"forms.isbn" | translate}}</th>
+        <th scope="col">{{"forms.request_date" | translate}}</th>
+        <th scope="col">{{"forms.delivery_date" | translate}}</th>
+        <th scope="col">{{"forms.user_name" | translate}}</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let book of books">
+        <td>{{ book.ISBN }}</td>
+        <td>{{ book.FECHA_SOLICITUD }}</td>
+        <td>{{ book.FECHA_ENTREGA }}</td>
+        <td>{{ book.NOMBRE_USUARIO }}</td>        
+      </tr>
+    </tbody>
+  </table>
+</div>

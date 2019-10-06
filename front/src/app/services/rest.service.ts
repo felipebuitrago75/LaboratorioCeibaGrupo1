@@ -17,6 +17,11 @@ export class RestService {
     return repos;
   }
 
+  queryDeleteRegular(route: string) {
+    let repos = this.http.delete(this.apiUrl.concat(route));
+    return repos;
+  }
+
   queryGet(route: string) {
     let token = localStorage.getItem("token");
     let headers = new Headers({ Authorization: token });
