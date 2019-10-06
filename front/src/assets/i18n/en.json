@@ -33,7 +33,8 @@
     "person_name": "PERSON NAME",
     "save": "Save",
     "edit_book": "Edit book",
-    "create_book": "Create book"
+    "create_book": "Create book",
+    "username": "Username"
   },
   "validation": {
     "required_field": "This field is required",
