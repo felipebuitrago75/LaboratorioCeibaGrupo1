@@ -2,6 +2,8 @@ package com.laboratorio.biblioteca.servicio.impl;
 
 import java.util.Date;
 import java.util.List;
+import java.util.NoSuchElementException;
+import java.util.Optional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -13,6 +15,7 @@ import com.laboratorio.biblioteca.entidades.Libro;
 import com.laboratorio.biblioteca.entidades.Prestamo;
 import com.laboratorio.biblioteca.entidades.Usuario;
 import com.laboratorio.biblioteca.repositorio.LibroRepositorio;
+import com.laboratorio.biblioteca.repositorio.PrestamoRepositorio;
 import com.laboratorio.biblioteca.repositorio.UsuarioRepositorio;
 import com.laboratorio.biblioteca.servicio.BibliotecaServicio;
 
@@ -23,11 +26,13 @@ public class BibliotecaServicioImpl implements BibliotecaServicio {
 	private UsuarioRepositorio usuarioRepositorio;
 	@Autowired
 	private LibroRepositorio libroRepositorio;
+	@Autowired
+	private PrestamoRepositorio prestamoRepositorio;
 	@PersistenceContext
 	private EntityManager entityManager;
 
 	public static final String EL_LIBRO_NO_SE_ENCUENTRA_DISPONIBLE = "El libro no se encuentra disponible";
-	public static final String PALIDROMO = "los libros pal�ndromos solo se pueden utilizar en la biblioteca";
+	public static final String PALIDROMO = "los libros pal?ndromos solo se pueden utilizar en la biblioteca";
 	public static final String PRESTADO = "No hay libros disponibles para prestar";
 	public static final String NO_EXISTE = "El libro no existe";
 
@@ -69,7 +74,7 @@ public class BibliotecaServicioImpl implements BibliotecaServicio {
 			boolean prestado = validarPrestamo(libro);
 			// Se valida si el libro ya se encuentra en prestamo
 			if (!prestado) {
-				// Se asigna el valor que devuelve el metodo de verificaci�n
+				// Se asigna el valor que devuelve el metodo de verificaci?n
 				palindromo = esPalindromo(isbn.toString());
 				if (palindromo == true) {
 					throw new UnsupportedOperationException(PALIDROMO);
@@ -97,7 +102,7 @@ public class BibliotecaServicioImpl implements BibliotecaServicio {
 	}
 
 	/**
-	 * M�todo encargado de determinar si una palabra es o no palindroma
+	 * M?todo encargado de determinar si una palabra es o no palindroma
 	 * 
 	 * @param isbn isbn que se va a verificar
 	 * @return si la cadena es o no palindroma
@@ -146,9 +151,9 @@ public class BibliotecaServicioImpl implements BibliotecaServicio {
 	}
 
 	/**
-	 * M�todo encargado de obtener la fecha m�xima
+	 * M?todo encargado de obtener la fecha m?xima
 	 * 
-	 * @return la fecha m�xima de entrega
+	 * @return la fecha m?xima de entrega
 	 */
 	@SuppressWarnings("deprecation")
 	private Date obtenerFecha() {
@@ -168,4 +173,22 @@ public class BibliotecaServicioImpl implements BibliotecaServicio {
 		fechaDevolucion.setDate(diasTotal);
 		return fechaDevolucion;
 	}
+
+	@Override
+	public Libro buscarLibroIsbn(Long isbn) {
+		try {
+			Optional<Libro> optLibro = libroRepositorio.findById(isbn);
+			return optLibro.get();
+		} catch (NoSuchElementException nse) {
+			return null;
+		}
+
+	}
+
+	@Override
+	public void agregarPrestamo(Prestamo prestamo) {
+		prestamoRepositorio.save(prestamo);
+
+	}
+
 }
