@@ -16,6 +16,9 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.laboratorio.biblioteca.entidades.Libro;
+import com.laboratorio.biblioteca.entidades.Prestamo;
+import com.laboratorio.biblioteca.entidades.PrestamoException;
+import com.laboratorio.biblioteca.repositorio.PrestamoRepositorio;
 import com.laboratorio.biblioteca.servicio.impl.BibliotecaServicioImpl;
 
 @RunWith(SpringRunner.class)
@@ -29,6 +32,9 @@ public class BibliotecaApplicationTests {
 
 	@Autowired
 	private BibliotecaServicioImpl biblioteca;
+
+	@Autowired
+	private PrestamoRepositorio prestamoRepo;
 
 	@Test
 	public void guardarLibro() {
@@ -117,7 +123,7 @@ public class BibliotecaApplicationTests {
 		assertTrue(!esPalindroma);
 	}
 
-	@Test(expected = UnsupportedOperationException.class)
+	@Test(expected = PrestamoException.class)
 	public void errorPalindromo() {
 		Libro libro = new Libro();
 		libro.setIsbn(23232L);
@@ -125,8 +131,41 @@ public class BibliotecaApplicationTests {
 		libro.setCantidadInventario(1);
 		libro.setNombre("Prueba");
 		biblioteca.agregarLibro(libro);
-		
+
 		biblioteca.prestarLibro(23232L, "Jhon Lara");
+	}
+
+	@Test(expected = PrestamoException.class)
+	public void errorLibroInexistente() {
+		biblioteca.prestarLibro(232565L, "Jhon Lara");
+	}
+
+	@Test(expected = PrestamoException.class)
+	public void errorSinDisponibilidad() {
+		Libro libro = new Libro();
+		libro.setIsbn(2322L);
+		libro.setCantidadDisponible(0);
+		libro.setCantidadInventario(1);
+		libro.setNombre("Prueba");
+		biblioteca.agregarLibro(libro);
+
+		biblioteca.prestarLibro(2322L, "Jhon Lara");
+	}
+
+	@Test
+	public void guardarPrestamo() {
+		Libro libro = new Libro();
+		libro.setIsbn(2322L);
+		libro.setCantidadDisponible(1);
+		libro.setCantidadInventario(1);
+		libro.setNombre("Prueba");
+		biblioteca.agregarLibro(libro);
+
+		biblioteca.prestarLibro(2322L, "Jhon Lara");
+
+		Prestamo prestamo = prestamoRepo.findAll().get(0);
+
+		assertEquals(prestamo.getISBN().toString(), "2322");
 	}
 
 }

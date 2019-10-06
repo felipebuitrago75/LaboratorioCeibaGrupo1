@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import com.laboratorio.biblioteca.entidades.Libro;
 import com.laboratorio.biblioteca.entidades.Prestamo;
+import com.laboratorio.biblioteca.entidades.PrestamoException;
 import com.laboratorio.biblioteca.entidades.Usuario;
 import com.laboratorio.biblioteca.repositorio.LibroRepositorio;
 import com.laboratorio.biblioteca.repositorio.PrestamoRepositorio;
@@ -78,7 +79,7 @@ public class BibliotecaServicioImpl implements BibliotecaServicio {
 				// Se asigna el valor que devuelve el metodo de verificaci?n
 				palindromo = esPalindromo(isbn.toString());
 				if (palindromo == true) {
-					throw new UnsupportedOperationException(PALIDROMO);
+					throw new PrestamoException(PALIDROMO);
 				} else {
 					Date fechaMaximaEntrega = validarFechaIsbn(isbn);
 					Prestamo prestamo = new Prestamo(libro.getIsbn(), new Date(), fechaMaximaEntrega, nombre);
@@ -88,10 +89,10 @@ public class BibliotecaServicioImpl implements BibliotecaServicio {
 				}
 			} else {
 
-				throw new UnsupportedOperationException(PRESTADO);
+				throw new PrestamoException(PRESTADO);
 			}
 		} else {
-			throw new UnsupportedOperationException(NO_EXISTE);
+			throw new PrestamoException(NO_EXISTE);
 		}
 
 	}
