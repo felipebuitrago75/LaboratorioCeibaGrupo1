@@ -15,12 +15,13 @@ import {
 
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
-import { DashboardComponent } from './dashboard/dashboard.component';
 import { BooksComponent } from './books/books.component';
 import { LayoutComponent } from './layout/layout.component';
+import { LoginComponent } from './login/login.component';
+import { CreateBooksComponent } from './create-books/create-books.component';
 
 @NgModule({
-  declarations: [AppComponent, DashboardComponent, BooksComponent, LayoutComponent],
+  declarations: [AppComponent, BooksComponent, LayoutComponent, LoginComponent, CreateBooksComponent],
   imports: [
     BrowserModule,
     HttpModule,

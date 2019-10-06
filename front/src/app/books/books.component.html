@@ -1,3 +1,37 @@
-<p>
-  books works!
-</p>
+<div class="spacer20"></div>
+<div class="container">
+  <div class="page-header">
+    <div class="row">
+      <div class="col-md-10"><h1>Listado de libros disponibles</h1></div>
+      <div class="col-md-2">
+        <button class="btn btn-primary pull-right" routerLink="/books-form">
+          Nuevo
+        </button>
+      </div>
+    </div>
+  </div>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">ISBN</th>
+        <th scope="col">Nombre</th>
+        <th scope="col">Inventario</th>
+        <th scope="col">Disponibles</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let book of books">
+        <td>{{ book.isbn }}</td>
+        <td>{{ book.nombre }}</td>
+        <td>{{ book.cantidadInventario }}</td>
+        <td>{{ book.cantidadDisponible }}</td>
+        <td>
+          <button class="btn btn-info">Editar</button>
+          &nbsp;
+          <button class="btn btn-danger">Eliminar</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

@@ -1,0 +1,33 @@
+<div class="create-container">
+  <h1>
+    Login
+  </h1>
+  <div class="form">
+    <form [formGroup]="myForm">
+      <div class="form-group">
+        <label>ISBN</label>
+        <input type="number" class="form-control" formControlName="isbn" />
+        <span *ngIf="controlHasError('isbn', 'required')">
+          <strong>{{ "auth.validation.required_field" | translate }}</strong>
+        </span>
+      </div>
+      <div class="form-group">
+        <label>Nombre</label>
+        <input type="text" class="form-control" formControlName="name" />
+        <span *ngIf="controlHasError('name', 'required')">
+          <strong>{{ "auth.validation.required_field" | translate }}</strong>
+        </span>
+      </div>
+      <div class="form-group">
+        <label>Cantidad en inventario</label>
+        <input type="number" class="form-control" formControlName="quantity" />
+        <span *ngIf="controlHasError('quantity', 'required')">
+          <strong>{{ "auth.validation.required_field" | translate }}</strong>
+        </span>
+      </div>
+      <button class="btn btn-primary" (click)="store()">
+        Guardar
+      </button>
+    </form>
+  </div>
+</div>
