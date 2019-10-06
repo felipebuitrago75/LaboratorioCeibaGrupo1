@@ -31,4 +31,5 @@ public interface BibliotecaServicio {
 	public void prestarLibro(Long isbn, String nombre);
 	
 	public List<Prestamo> buscarLibrosPrestados();
+	
 }

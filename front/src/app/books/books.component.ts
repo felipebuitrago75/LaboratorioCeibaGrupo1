@@ -22,7 +22,7 @@ export class BooksComponent implements OnInit {
   constructor(private service:RestService, public translate: TranslateService) { }
 
   ngOnInit() {
-    //this.getBooks();
+    this.getBooks();
   }
 
   /**
