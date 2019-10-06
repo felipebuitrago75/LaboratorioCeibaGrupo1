@@ -310,36 +310,9 @@
     },
     "alerts": {
       "cancel": "Cancelar",
-      "confirm": "Confirmar",
-      "congratulations": "Felicitaciones!",
+      "confirm": "Confirmar",      
       "sure_to_delete": "Estás seguro de eliminar este registro?",
-      "yes": "Sí",
-      "cannot_add_more_unities": "No puede agregar más unidades",
-      "cannot_enter_letters": "No puede ingresar letras",
-      "cannot_edit_until_fees_loaded": "No se puede editar hasta que termine la carga de las tarifas",
-      "fees_import_ended": "Importación de tarifas finalizada",
-      "cannot_be_empty_or_zero_values": "No pueden haber valores vacios o en cero",
-      "no_fees_for_origin_destination": "No se encontraron tarifas para el origen y destino seleccionados",
-      "important": "Importante",
-      "understood": "Entendido",
-      "upload_can_take_long": "La carga de las tarifas se realizará en segundo plano, si el archivo es muy grande la carga podría tomar varios minutos. ",
-      "no_selected_destination_or_origin": "Debe seleccionar un origen y un destino",
-      "export_can_take_long": "Esta acción puede tomar unos segundos dependiendo la cantidad de tarifas",
-      "cubic_and_total_unities_not_correspond": "El número de unidades cubicadas no corresponde con el número de unidades inicial",
-      "cubic_and_total_weights_not_correspond": "El peso real cubicado no corresponde con el peso total inicial",
-      "should_pick_place": "Debe seleccionar un lugar",
-      "vehicle_type_required": "Debe seleccionar un tipo de vehículo",
-      "headquarter_required": "Debe seleccionar una sede",
-      "urban_transporter_required": "Debe seleccionar una transportadora urbana",
-      "fee_type_required": "Debe seleccionar un tipo de tarifa",
-      "file_required": "Debe cargar un archivo",
-      "location_required": "Debe seleccionar un lugar",
-      "unexpected_error": "Ha ocurrido un error inesperado",
-      "urban_zone_required": "Debe seleccionar una zona",
-      "sure_to_assign": "Está seguro de hacer la asignación",
-      "no_more_vehicle_weight_capacity": "El peso del vehículo ha sido excedido",
-      "no_more_vehicle_volume_capacity": "El volumen del vehículo ha sido excedido",
-      "url_not_provided": "Debe especificar una url"
+      "yes": "Sí"      
     }
   }
   

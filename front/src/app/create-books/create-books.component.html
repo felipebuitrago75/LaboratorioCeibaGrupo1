@@ -1,6 +1,9 @@
 <div class="create-container">
-  <h1>
-    Login
+  <h1 *ngIf="!editing">
+    Crear libro
+  </h1>
+  <h1 *ngIf="editing">
+    Editar libro
   </h1>
   <div class="form">
     <form [formGroup]="myForm">

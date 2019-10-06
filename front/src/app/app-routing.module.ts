@@ -5,6 +5,7 @@ import { LayoutComponent } from './layout/layout.component';
 import { BooksComponent } from './books/books.component';
 import { LoginComponent } from './login/login.component';
 import { CreateBooksComponent } from './create-books/create-books.component';
+import { LendBooksComponent } from './lend-books/lend-books.component';
 
 const routes: Routes = [  
   { path: "", component: LoginComponent },
@@ -13,7 +14,8 @@ const routes: Routes = [
     component: LayoutComponent,
     children: [
       { path: "books", component: BooksComponent },
-      { path: "books-form", component: CreateBooksComponent }      
+      { path: "books-form", component: CreateBooksComponent }   ,
+      { path: "books-loan", component: LendBooksComponent }      
     ]
   }
 ];

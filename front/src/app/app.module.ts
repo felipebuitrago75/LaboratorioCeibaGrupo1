@@ -15,13 +15,28 @@ import {
 
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
-import { BooksComponent } from './books/books.component';
-import { LayoutComponent } from './layout/layout.component';
-import { LoginComponent } from './login/login.component';
-import { CreateBooksComponent } from './create-books/create-books.component';
+import { BooksComponent } from "./books/books.component";
+import { LayoutComponent } from "./layout/layout.component";
+import { LoginComponent } from "./login/login.component";
+import { CreateBooksComponent } from "./create-books/create-books.component";
+import { esLocale } from "ngx-bootstrap/locale";
+import { defineLocale } from "ngx-bootstrap/chronos";
+import es from "@angular/common/locales/es";
+import { registerLocaleData } from "@angular/common";
+import { LOCALE_ID } from "@angular/core";
+import { LendBooksComponent } from './lend-books/lend-books.component';
+defineLocale("es", esLocale);
+registerLocaleData(es);
 
 @NgModule({
-  declarations: [AppComponent, BooksComponent, LayoutComponent, LoginComponent, CreateBooksComponent],
+  declarations: [
+    AppComponent,
+    BooksComponent,
+    LayoutComponent,
+    LoginComponent,
+    CreateBooksComponent,
+    LendBooksComponent    
+  ],
   imports: [
     BrowserModule,
     HttpModule,
@@ -35,9 +50,14 @@ import { CreateBooksComponent } from './create-books/create-books.component';
         useFactory: HttpLoaderFactory,
         deps: [HttpClient]
       }
-    }),
+    })
   ],
-  providers: [],
+  providers: [
+    {
+      provide: LOCALE_ID,
+      useValue: "es-ES"
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
