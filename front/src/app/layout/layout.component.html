@@ -23,6 +23,10 @@
       </li>
     </ul>
     <form class="form-inline my-2 my-lg-0">
+      <select name="language" [(ngModel)]="language" class="form-control" (change)="changeLanguage()">
+        <option value="es">{{"forms.spanish" | translate}}</option>
+        <option value="en">{{"forms.english" | translate}}</option>
+      </select>
       <button
         class="btn btn-outline-success my-2 my-sm-0"
         type="submit"
