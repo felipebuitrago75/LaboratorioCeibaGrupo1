@@ -79,7 +79,8 @@ export class BooksComponent implements OnInit {
     this.service.queryDeleteRegular(url).subscribe(
       response => {
         let result = response.json();
-        if (result) {          
+        if (result) {   
+          this.getBooks();       
           swal({
             title: this.translate.instant("alerts.success"),
             text: this.translate.instant("alerts.deleted_book"),
