@@ -1,0 +1,40 @@
+<div class="create-container">  
+  <h1>
+    Préstamo
+  </h1>
+  <div class="form">
+    <form [formGroup]="myForm">
+      <div class="form-group">
+        <label>ISBN</label>
+        <input type="number" class="form-control" formControlName="isbn" />
+        <span *ngIf="controlHasError('isbn', 'required')">
+          <strong>{{ "auth.validation.required_field" | translate }}</strong>
+        </span>
+      </div>
+      <div class="form-group">
+        <label>Fecha prestamo</label>
+        <input type="date" class="form-control" formControlName="loan_date" />
+        <span *ngIf="controlHasError('loan_date', 'required')">
+          <strong>{{ "auth.validation.required_field" | translate }}</strong>
+        </span>
+      </div> 
+      <div class="form-group">
+        <label>Fecha entrega</label>
+        <input type="date" class="form-control" formControlName="delivery_date" />
+        <span *ngIf="controlHasError('delivery_date', 'required')">
+          <strong>{{ "auth.validation.required_field" | translate }}</strong>
+        </span>
+      </div>      
+      <div class="form-group">
+        <label>Nombre persona</label>
+        <input type="text" class="form-control" formControlName="person_name" />
+        <span *ngIf="controlHasError('person_name', 'required')">
+          <strong>{{ "auth.validation.required_field" | translate }}</strong>
+        </span>
+      </div>        
+      <button class="btn btn-primary" (click)="store()">
+        Guardar
+      </button>
+    </form>
+  </div>
+</div>
