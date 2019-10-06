@@ -67,7 +67,7 @@ public class BibliotecaServicioImpl implements BibliotecaServicio {
 	public void prestarLibro(Long isbn, String nombre) {
 		// Variable
 		boolean palindromo = false;
-		Libro libro = obtenerLibroPorIsbn(isbn);
+		Libro libro = buscarLibroIsbn(isbn);
 		// Se valida si el libro existe
 		if (libro != null) {
 
@@ -81,7 +81,7 @@ public class BibliotecaServicioImpl implements BibliotecaServicio {
 				} else {
 					Date fechaMaximaEntrega = validarFechaIsbn(isbn);
 					Prestamo prestamo = new Prestamo(libro, new Date(), fechaMaximaEntrega, nombre);
-					repositorioPrestamo.agregar(prestamo);
+					prestamoRepositorio.save(prestamo);
 				}
 			} else {
 
