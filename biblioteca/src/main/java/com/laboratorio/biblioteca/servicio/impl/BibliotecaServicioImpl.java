@@ -1,6 +1,5 @@
 package com.laboratorio.biblioteca.servicio.impl;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -8,11 +7,10 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Path;
-import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 
 import com.laboratorio.biblioteca.entidades.Libro;
@@ -33,7 +31,7 @@ public class BibliotecaServicioImpl implements BibliotecaServicio {
 	private EntityManager entityManager;
 
 	public static final String EL_LIBRO_NO_SE_ENCUENTRA_DISPONIBLE = "El libro no se encuentra disponible";
-	public static final String PALIDROMO = "los libros pal√≠ndromos solo se pueden utilizar en la biblioteca";
+	public static final String PALIDROMO = "los libros palÌndromos solo se pueden utilizar en la biblioteca";
 	public static final String PRESTADO = "No hay libros disponibles para prestar";
 	public static final String NO_EXISTE = "El libro no existe";
 
@@ -49,17 +47,9 @@ public class BibliotecaServicioImpl implements BibliotecaServicio {
 	}
 
 	@Override
-	public Libro obtenerLibroPorIsbn(Long isbn) {
-		CriteriaBuilder cb = entityManager.getCriteriaBuilder();
-		CriteriaQuery<Libro> query = cb.createQuery(Libro.class);
-		Root<Libro> libro = query.from(Libro.class);
-		Path<String> isbnPath = libro.get("isbn");
-		List<Predicate> predicates = new ArrayList<>();
-		predicates.add(cb.like(isbnPath, isbn.toString()));
-
-		query.select(libro).where(cb.or(predicates.toArray(new Predicate[predicates.size()])));
-
-		return (Libro) entityManager.createQuery(query).getSingleResult();
+	public List<Libro> obtenerLibrosDisponibles() {
+		String consultaLibrosDisponibles = "SELECT l FROM Libro l WHERE l.cantidadDisponible > 0";
+		return entityManager.createQuery(consultaLibrosDisponibles).getResultList();
 	}
 
 	@Override
@@ -83,7 +73,7 @@ public class BibliotecaServicioImpl implements BibliotecaServicio {
 			boolean prestado = validarPrestamo(libro);
 			// Se valida si el libro ya se encuentra en prestamo
 			if (!prestado) {
-				// Se asigna el valor que devuelve el metodo de verificaci√≥n
+				// Se asigna el valor que devuelve el metodo de verificaciÛn
 				palindromo = esPalindromo(isbn.toString());
 				if (palindromo == true) {
 					throw new UnsupportedOperationException(PALIDROMO);
@@ -111,7 +101,7 @@ public class BibliotecaServicioImpl implements BibliotecaServicio {
 	}
 
 	/**
-	 * M√©todo encargado de determinar si una palabra es o no palindroma
+	 * MÈtodo encargado de determinar si una palabra es o no palindroma
 	 * 
 	 * @param isbn isbn que se va a verificar
 	 * @return si la cadena es o no palindroma
@@ -160,9 +150,9 @@ public class BibliotecaServicioImpl implements BibliotecaServicio {
 	}
 
 	/**
-	 * M√©todo encargado de obtener la fecha m√°xima
+	 * MÈtodo encargado de obtener la fecha m·xima
 	 * 
-	 * @return la fecha m√°xima de entrega
+	 * @return la fecha m·xima de entrega
 	 */
 	@SuppressWarnings("deprecation")
 	private Date obtenerFecha() {

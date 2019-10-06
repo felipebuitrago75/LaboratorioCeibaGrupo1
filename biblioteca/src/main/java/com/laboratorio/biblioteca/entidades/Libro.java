@@ -88,7 +88,7 @@ public class Libro {
 	 * @return nombre el valor el nombre del libro
 	 */
 	public int getCantidadDisponible() {
-		return cantidadInventario;
+		return cantidadDisponible;
 	}
 
 	/**

@@ -1,5 +1,7 @@
 package com.laboratorio.biblioteca.servicio;
 
+import java.util.List;
+
 import com.laboratorio.biblioteca.entidades.Libro;
 import com.laboratorio.biblioteca.entidades.Usuario;
 
@@ -16,9 +18,8 @@ public interface BibliotecaServicio {
 	 * 
 	 * @author JhonLara
 	 */
-	public Libro obtenerLibroPorIsbn(Long isbn);
-
-	/**
+	public List<Libro> obtenerLibrosDisponibles();
+/**
 	 * Método encargado de realizar el prestamo del libro
 	 * 
 	 * @author JhonLara
