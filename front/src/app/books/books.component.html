@@ -22,12 +22,12 @@
     </thead>
     <tbody>
       <tr *ngFor="let book of books">
-        <td>{{ book.ISBN }}</td>
-        <td>{{ book.NOMBRE }}</td>
-        <td>{{ book.CANTIDAD_INVENTARIO }}</td>
-        <td>{{ book.CANTIDAD_DISPONIBLE }}</td>
+        <td>{{ book.isbn }}</td>
+        <td>{{ book.nombre }}</td>
+        <td>{{ book.cantidadInventario }}</td>
+        <td>{{ book.cantidadDisponible }}</td>
         <td>
-          <button class="btn btn-info" routerLink="/books-form" [queryParams]="{isbn:ISBN.isbn,name:book.NOMBRE,quantity:book.CANTIDAD_INVENTARIO,available_quantity:book.CANTIDAD_DISPONIBLE}">Editar</button>
+          <button class="btn btn-info" routerLink="/books-form" [queryParams]="{isbn:book.isbn,name:book.nombre,quantity:book.cantidadInventario,available_quantity:book.cantidadDisponible}">Editar</button>
           &nbsp;
           <button class="btn btn-danger" (click)="confirmDelete(book.isbn)">{{"forms.delete" | translate}}</button>
         </td>

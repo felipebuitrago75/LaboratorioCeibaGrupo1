@@ -21,11 +21,11 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let book of books">
-        <td>{{ book.ISBN }}</td>
-        <td>{{ book.FECHA_SOLICITUD }}</td>
-        <td>{{ book.FECHA_ENTREGA }}</td>
-        <td>{{ book.NOMBRE_USUARIO }}</td>        
+      <tr *ngFor="let loan of loans">
+        <td>{{ loan.isbn }}</td>
+        <td>{{ loan.fechaSolicitud }}</td>
+        <td>{{ loan.fechaEntrega }}</td>
+        <td>{{ loan.nombreUsuario }}</td>        
       </tr>
     </tbody>
   </table>

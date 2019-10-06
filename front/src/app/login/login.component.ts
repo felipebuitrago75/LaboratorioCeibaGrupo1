@@ -23,7 +23,7 @@ export class LoginComponent implements OnInit {
       ]),
       password: new FormControl("", [
         Validators.required,
-        Validators.minLength(8)
+        Validators.minLength(4)
       ]),
       language: new FormControl()
     });
@@ -49,9 +49,8 @@ export class LoginComponent implements OnInit {
     };
     let email = controls["email"].value;
     let password = controls["password"].value;
-    let url = `validarUsuario?nombreUsuario=${email}&contrasenia=${password}`;        
-    this.router.navigate(["/books"]);        
-    /* this.service.queryExternalApi(url).subscribe(
+    let url = `validarUsuario?nombreUsuario=${email}&contrasenia=${password}`;         
+     this.service.queryExternalApi(url).subscribe(
       response => {
         let result = response.json();
         if (result) {          
@@ -63,7 +62,7 @@ export class LoginComponent implements OnInit {
       err => {
         console.log(err);
       }
-    ); */
+    ); 
   }
 
   /**

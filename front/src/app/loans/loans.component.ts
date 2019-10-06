@@ -13,7 +13,7 @@ export class LoansComponent implements OnInit {
   constructor(private service:RestService, public translate: TranslateService) { }
 
   ngOnInit() {
-    //this.getLoans();
+    this.getLoans();
   }
 
   /**
@@ -21,7 +21,7 @@ export class LoansComponent implements OnInit {
    *
    */
   private getLoans(){
-    let url = `obtenerLibrosDisponibles`;
+    let url = `buscarLibrosPrestados`;
     this.service.queryExternalApi(url).subscribe(
       response => {
         let result = response.json();

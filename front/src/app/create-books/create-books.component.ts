@@ -22,7 +22,7 @@ export class CreateBooksComponent implements OnInit {
     private router: Router,
     private service: RestService,
     private route: ActivatedRoute
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.isbn = this.route.snapshot.queryParams["isbn"];
@@ -70,19 +70,19 @@ export class CreateBooksComponent implements OnInit {
     }
 
     const bookData = {
-      ISBN: controls["isbn"].value,
-      NOMBRE: controls["name"].value,
-      CANTIDAD_INVENTARIO: controls["quantity"].value,
-      CANTIDAD_DISPONIBLE: controls["available_quantity"].value
+      isbn: controls["isbn"].value,
+      nombre: controls["name"].value,
+      cantidadInventario: controls["quantity"].value,
+      cantidadDisponible: controls["available_quantity"].value
     };
-    
-    let url = `agregarLibro`;
-    this.service.queryPostRegular(url,bookData).subscribe(
+
+    let url = `agregarLibro?isbn=${bookData.isbn}&nombre=${bookData.nombre}&cantidadInventario=${bookData.cantidadInventario}&cantidadDisponible=${bookData.cantidadDisponible}`;
+    this.service.queryPostRegular(url, null).subscribe(
       response => {
         let result = response.json();
-        if (result) {          
+        if (result) {
           //this.router.navigate(["/books"]);        
-        } else {          
+        } else {
           console.log('error');
         }
       },
@@ -107,6 +107,6 @@ export class CreateBooksComponent implements OnInit {
     const result =
       control.hasError(validationType) && (control.dirty || control.touched);
 
-      return result;
+    return result;
   }
 }
