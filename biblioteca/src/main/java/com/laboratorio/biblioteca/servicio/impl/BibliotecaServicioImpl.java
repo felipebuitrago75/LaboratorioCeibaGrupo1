@@ -5,12 +5,8 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Root;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 
 import com.laboratorio.biblioteca.entidades.Libro;
@@ -31,7 +27,7 @@ public class BibliotecaServicioImpl implements BibliotecaServicio {
 	private EntityManager entityManager;
 
 	public static final String EL_LIBRO_NO_SE_ENCUENTRA_DISPONIBLE = "El libro no se encuentra disponible";
-	public static final String PALIDROMO = "los libros palíndromos solo se pueden utilizar en la biblioteca";
+	public static final String PALIDROMO = "los libros palï¿½ndromos solo se pueden utilizar en la biblioteca";
 	public static final String PRESTADO = "No hay libros disponibles para prestar";
 	public static final String NO_EXISTE = "El libro no existe";
 
@@ -73,7 +69,7 @@ public class BibliotecaServicioImpl implements BibliotecaServicio {
 			boolean prestado = validarPrestamo(libro);
 			// Se valida si el libro ya se encuentra en prestamo
 			if (!prestado) {
-				// Se asigna el valor que devuelve el metodo de verificación
+				// Se asigna el valor que devuelve el metodo de verificaciï¿½n
 				palindromo = esPalindromo(isbn.toString());
 				if (palindromo == true) {
 					throw new UnsupportedOperationException(PALIDROMO);
@@ -101,7 +97,7 @@ public class BibliotecaServicioImpl implements BibliotecaServicio {
 	}
 
 	/**
-	 * Método encargado de determinar si una palabra es o no palindroma
+	 * Mï¿½todo encargado de determinar si una palabra es o no palindroma
 	 * 
 	 * @param isbn isbn que se va a verificar
 	 * @return si la cadena es o no palindroma
@@ -150,9 +146,9 @@ public class BibliotecaServicioImpl implements BibliotecaServicio {
 	}
 
 	/**
-	 * Método encargado de obtener la fecha máxima
+	 * Mï¿½todo encargado de obtener la fecha mï¿½xima
 	 * 
-	 * @return la fecha máxima de entrega
+	 * @return la fecha mï¿½xima de entrega
 	 */
 	@SuppressWarnings("deprecation")
 	private Date obtenerFecha() {
