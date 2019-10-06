@@ -1,5 +1,7 @@
 package com.laboratorio.biblioteca.controlador;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -32,10 +34,9 @@ public class BibliotecaControlador {
 		bibliotecaServicio.eliminarLibro(Isbn);
 	}
 
-	@GetMapping("/obtenerLibroPorIsbn/{ISBN}")
-	@Query(value = "SELECT l FROM Libro l WHERE l.isbn IN :isbn")
-	public Libro obtenerLibroPorIsbn(@PathVariable(name = "ISBN") String Isbn) {
-		return bibliotecaServicio.obtenerLibroPorIsbn(Isbn);
+	@GetMapping("/obtenerLibrosDisponibles")
+	public List<Libro> obtenerLibrosDisponibles() {
+		return bibliotecaServicio.obtenerLibrosDisponibles();
 	}
 
 }

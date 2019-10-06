@@ -1,5 +1,7 @@
 package com.laboratorio.biblioteca.servicio;
 
+import java.util.List;
+
 import com.laboratorio.biblioteca.entidades.Libro;
 import com.laboratorio.biblioteca.entidades.Usuario;
 
@@ -16,5 +18,5 @@ public interface BibliotecaServicio {
 	 * 
 	 * @author JhonLara
 	 */
-	public Libro obtenerLibroPorIsbn(String isbn);
+	public List<Libro> obtenerLibrosDisponibles();
 }

@@ -1,17 +1,15 @@
 package com.laboratorio.biblioteca.servicio.impl;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Path;
-import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 
 import com.laboratorio.biblioteca.entidades.Libro;
@@ -42,24 +40,16 @@ public class BibliotecaServicioImpl implements BibliotecaServicio {
 	}
 
 	@Override
-	public Libro obtenerLibroPorIsbn(String isbn) {
-		CriteriaBuilder cb = entityManager.getCriteriaBuilder();
-		CriteriaQuery<Libro> query = cb.createQuery(Libro.class);
-		Root<Libro> libro = query.from(Libro.class);
-
-		Path<String> isbnPath = libro.get("isbn");
-		List<Predicate> predicates = new ArrayList<>();
-		predicates.add(cb.like(isbnPath, isbn));
-
-		query.select(libro).where(cb.or(predicates.toArray(new Predicate[predicates.size()])));
-
-		return (Libro) entityManager.createQuery(query).getSingleResult();
+	public List<Libro> obtenerLibrosDisponibles() {
+		String consultaLibrosDisponibles = "SELECT l FROM Libro l WHERE l.cantidadDisponible > 0";
+		return entityManager.createQuery(consultaLibrosDisponibles).getResultList();
 	}
 
 	@Override
 	public void agregarLibro(Libro libro) {
 		libroRepositorio.save(libro);
 	}
+
 	@Override
 	public void eliminarLibro(Long Isbn) {
 		libroRepositorio.deleteById(Isbn);
