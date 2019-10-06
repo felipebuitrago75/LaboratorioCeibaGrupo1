@@ -88,7 +88,7 @@ public class BibliotecaApplicationTests {
 		assertTrue(libros.size() > 0);
 		assertEquals(libros.get(0).getNombre(), libro.getNombre());
 	}
-	
+
 	@Test
 	public void esPalindormaTrue() {
 		Libro libro = new Libro();
@@ -102,7 +102,7 @@ public class BibliotecaApplicationTests {
 
 		assertTrue(esPalindroma);
 	}
-	
+
 	@Test
 	public void esPalindormaFalse() {
 		Libro libro = new Libro();
@@ -116,6 +116,17 @@ public class BibliotecaApplicationTests {
 
 		assertTrue(!esPalindroma);
 	}
-	
+
+	@Test(expected = UnsupportedOperationException.class)
+	public void errorPalindromo() {
+		Libro libro = new Libro();
+		libro.setIsbn(23232L);
+		libro.setCantidadDisponible(1);
+		libro.setCantidadInventario(1);
+		libro.setNombre("Prueba");
+		biblioteca.agregarLibro(libro);
+		
+		biblioteca.prestarLibro(23232L, "Jhon Lara");
+	}
 
 }
