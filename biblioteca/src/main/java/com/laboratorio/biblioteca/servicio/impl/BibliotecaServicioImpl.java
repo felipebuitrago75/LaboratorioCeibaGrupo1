@@ -1,8 +1,6 @@
 package com.laboratorio.biblioteca.servicio.impl;
 
-import java.util.Calendar;
 import java.util.Date;
-import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
@@ -34,7 +32,7 @@ public class BibliotecaServicioImpl implements BibliotecaServicio {
 	private EntityManager entityManager;
 
 	public static final String EL_LIBRO_NO_SE_ENCUENTRA_DISPONIBLE = "El libro no se encuentra disponible";
-	public static final String PALINDROMO = "los libros pal?ndromos solo se pueden utilizar en la biblioteca";
+	public static final String PALIDROMO = "los libros pal?ndromos solo se pueden utilizar en la biblioteca";
 	public static final String PRESTADO = "No hay libros disponibles para prestar";
 	public static final String NO_EXISTE = "El libro no existe";
 
@@ -80,11 +78,13 @@ public class BibliotecaServicioImpl implements BibliotecaServicio {
 				// Se asigna el valor que devuelve el metodo de verificaci?n
 				palindromo = esPalindromo(isbn.toString());
 				if (palindromo == true) {
-					throw new UnsupportedOperationException(PALINDROMO);
+					throw new UnsupportedOperationException(PALIDROMO);
 				} else {
 					Date fechaMaximaEntrega = validarFechaIsbn(isbn);
-					Prestamo prestamo = new Prestamo(libro, new Date(), fechaMaximaEntrega, nombre);
+					Prestamo prestamo = new Prestamo(libro.getIsbn(), new Date(), fechaMaximaEntrega, nombre);
 					prestamoRepositorio.save(prestamo);
+					libro.setCantidadDisponible(libro.getCantidadDisponible() - 1);
+					agregarLibro(libro);
 				}
 			} else {
 
@@ -158,20 +158,23 @@ public class BibliotecaServicioImpl implements BibliotecaServicio {
 	 * 
 	 * @return la fecha m?xima de entrega
 	 */
+	@SuppressWarnings("deprecation")
 	private Date obtenerFecha() {
-		Calendar fechaDevolucion = new GregorianCalendar();
-		fechaDevolucion.setTime(new Date());
-		Integer dias = 0;
-		while (dias < 15) {
-			if (fechaDevolucion.get(Calendar.DAY_OF_WEEK) != Calendar.SUNDAY) {
-				dias++;
-				fechaDevolucion.add(Calendar.DATE, 1);
+		Date FechaEjecucion = new Date();
+		Date fechaDevolucion = new Date();
+		int diferenciaDias = 0;
+
+		int diasTotal = 0;
+		while (diferenciaDias != 15) {
+
+			if (FechaEjecucion.getDay() != 0 && FechaEjecucion.getDay() != 6) {
+				diferenciaDias++;
 			}
-			fechaDevolucion.add(Calendar.DATE, 1);
-
+			FechaEjecucion.setDate(FechaEjecucion.getDate() + 1);
+			diasTotal++;
 		}
-
-		return fechaDevolucion.getTime();
+		fechaDevolucion.setDate(diasTotal+1);
+		return fechaDevolucion;
 	}
 
 	@Override

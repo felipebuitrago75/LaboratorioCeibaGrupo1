@@ -7,10 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
-
-/**
+import javax.persistence.Table;/**
  * Clase encargada de modelar el objeto prestamo
  * 
  * @author JhonLara
@@ -30,8 +27,8 @@ public class Prestamo {
 	/**
 	 * Atributo que representa el libre del prestamo
 	 */
-	@ManyToOne(optional = false)
-	private Libro libro;
+	@Column(name = "ISBN")
+	private Long ISBN;
 
 	/**
 	 * Atributo que representa la fecha en que se realizo el prestamo
@@ -56,9 +53,9 @@ public class Prestamo {
 	 * @param fechaEntrega
 	 * @param nombreUsuario
 	 */
-	public Prestamo(Libro libro, Date fechaSolicitud, Date fechaEntrega, String nombreUsuario) {
+	public Prestamo(Long ISBN, Date fechaSolicitud, Date fechaEntrega, String nombreUsuario) {
 		super();
-		this.libro = libro;
+		this.ISBN = ISBN;
 		this.fechaSolicitud = fechaSolicitud;
 		this.fechaEntrega = fechaEntrega;
 		this.nombreUsuario = nombreUsuario;
@@ -85,18 +82,12 @@ public class Prestamo {
 		this.idPrestamo = idPrestamo;
 	}
 
-	/**
-	 * @return the libro
-	 */
-	public Libro getLibro() {
-		return libro;
+	public Long getISBN() {
+		return ISBN;
 	}
 
-	/**
-	 * @param libro the libro to set
-	 */
-	public void setLibro(Libro libro) {
-		this.libro = libro;
+	public void setISBN(Long iSBN) {
+		ISBN = iSBN;
 	}
 
 	/**
