@@ -83,7 +83,7 @@ public class BibliotecaServicioImpl implements BibliotecaServicio {
 		// Se valida si el libro existe
 		if (libro != null) {
 
-			boolean prestado = validarPrestamo(libro);
+			boolean prestado = validarLibrosDisponibles(libro);
 			// Se valida si el libro ya se encuentra en prestamo
 			if (prestado) {
 				// Se asigna el valor que devuelve el metodo de verificaci?n
@@ -107,9 +107,8 @@ public class BibliotecaServicioImpl implements BibliotecaServicio {
 
 	}
 
-	public boolean validarPrestamo(Libro libroIsbnprestado) {
-		if (libroIsbnprestado != null && libroIsbnprestado.getCantidadDisponible() > 0
-				&& libroIsbnprestado.getCantidadInventario() > 0) {
+	public boolean validarLibrosDisponibles(Libro libroIsbnprestado) {
+		if (libroIsbnprestado != null && libroIsbnprestado.getCantidadDisponible() > 0) {
 			return true;
 		}
 		return false;
@@ -146,7 +145,6 @@ public class BibliotecaServicioImpl implements BibliotecaServicio {
 	}
 
 	private Date validarFechaIsbn(Long isbn) {
-
 		String variable = "";
 		int resultado = 0;
 
@@ -170,7 +168,7 @@ public class BibliotecaServicioImpl implements BibliotecaServicio {
 	 * @return la fecha m?xima de entrega
 	 */
 	@SuppressWarnings("deprecation")
-	private Date obtenerFecha() {
+	public Date obtenerFecha() {
 		Date FechaEjecucion = new Date();
 		Date fechaDevolucion = new Date();
 		int diferenciaDias = 0;
