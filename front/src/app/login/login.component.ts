@@ -4,6 +4,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { Router } from '@angular/router';
 import { RestService } from '../services/rest.service';
 import { BooksComponent } from '../books/books.component';
+import swal from "sweetalert2";
 
 @Component({
   selector: 'app-login',
@@ -56,7 +57,17 @@ export class LoginComponent implements OnInit {
         if (result) {          
           this.router.navigate(["/books"]);        
         } else {          
-          console.log('error');
+          swal({
+            title: this.translate.instant("alerts.error"),
+            text: this.translate.instant("alerts.not_login"),
+            type: "error",
+            showCancelButton: false,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: this.translate.instant("buttons.ok"),            
+          }).then(result => {
+            return false;
+          });
         }
       },
       err => {
