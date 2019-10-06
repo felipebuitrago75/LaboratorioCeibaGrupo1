@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { RestService } from '../services/rest.service';
+import { TranslateService } from '@ngx-translate/core';
+import swal from "sweetalert2";
 
 @Component({
   selector: 'app-lend-books',
@@ -9,7 +11,7 @@ import { RestService } from '../services/rest.service';
 })
 export class LendBooksComponent implements OnInit {
   public myForm: FormGroup;
-  constructor(private service:RestService) { }
+  constructor(private service:RestService,public translate:TranslateService) { }
 
   ngOnInit() {
     this.myForm = new FormGroup({
@@ -40,9 +42,29 @@ export class LendBooksComponent implements OnInit {
       response => {
         let result = response.json();
         if (result) {          
-          //this.router.navigate(["/books"]);        
+          swal({
+            title: this.translate.instant("alerts.success"),
+            text: this.translate.instant("alerts.stored_loan"),
+            type: "success",
+            showCancelButton: false,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: this.translate.instant("buttons.ok"),            
+          }).then(result => {
+            return false;
+          });        
         } else {          
-          console.log('error');
+          swal({
+            title: this.translate.instant("alerts.error"),
+            text: result.mensaje,
+            type: "error",
+            showCancelButton: false,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: this.translate.instant("buttons.ok"),            
+          }).then(result => {
+            return false;
+          });
         }
       },
       err => {

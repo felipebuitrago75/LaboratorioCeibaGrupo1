@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { TranslateService } from "@ngx-translate/core";
 import { Router, ActivatedRoute } from "@angular/router";
 import { RestService } from "../services/rest.service";
+import swal from "sweetalert2";
 import { Book } from "../interfaces/book";
 import { FormGroup, FormControl, Validators } from "@angular/forms";
 
@@ -80,10 +81,30 @@ export class CreateBooksComponent implements OnInit {
     this.service.queryPostRegular(url, null).subscribe(
       response => {
         let result = response.json();
-        if (result) {
-          //this.router.navigate(["/books"]);        
-        } else {
-          console.log('error');
+        if (result) {          
+          swal({
+            title: this.translate.instant("alerts.success"),
+            text: this.translate.instant("alerts.stored_book"),
+            type: "success",
+            showCancelButton: false,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: this.translate.instant("buttons.ok"),            
+          }).then(result => {
+            return false;
+          });        
+        } else {          
+          swal({
+            title: this.translate.instant("alerts.error"),
+            text: this.translate.instant("alerts.cannot_delete_book"),
+            type: "error",
+            showCancelButton: false,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: this.translate.instant("buttons.ok"),            
+          }).then(result => {
+            return false;
+          });
         }
       },
       err => {

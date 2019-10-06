@@ -48,15 +48,23 @@
     "save": "Save",
     "cancel": "Cancel",
     "new_document": "New document",
-    "download_file": "Download file"
+    "download_file": "Download file",
+    "ok": "OK",
+    "yes": "YES"
   },
   "alerts": {
     "congratulations": "Congratulations!",
     "confirm": "Confirm",
     "sure_to_delete": "Are you sure to delete this register?",
+    "error": "Error",
+    "book_doesnt_exist":"The book doesn't exist",
+    "deleted_book": "The book has been deleted",
+    "success": "Success",
     "yes": "Yes",
     "cancel": "Cancel",
     "important": "Importante",
-    "upload_can_take_long": "La carga de las tarifas se hará en segundo plano y puede tomar varios minutos."
+    "upload_can_take_long": "La carga de las tarifas se hará en segundo plano y puede tomar varios minutos.",
+    "stored_book":"Stored book",
+    "not_login":"Cannot login right now, try later"
   }
 }
