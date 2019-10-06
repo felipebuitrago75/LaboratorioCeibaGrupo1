@@ -78,13 +78,13 @@ export class BooksComponent implements OnInit {
     let url = `eliminarLibro/${bookIsbn}`;
     this.service.queryDeleteRegular(url).subscribe(
       response => {
-        let result = response.json();
+        let result = response;
         if (result) {   
           this.getBooks();       
           swal({
             title: this.translate.instant("alerts.success"),
             text: this.translate.instant("alerts.deleted_book"),
-            type: "error",
+            type: "success",
             showCancelButton: false,
             confirmButtonColor: "#3085d6",
             cancelButtonColor: "#d33",

@@ -3,6 +3,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { RestService } from '../services/rest.service';
 import { TranslateService } from '@ngx-translate/core';
 import swal from "sweetalert2";
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-lend-books',
@@ -11,7 +12,7 @@ import swal from "sweetalert2";
 })
 export class LendBooksComponent implements OnInit {
   public myForm: FormGroup;
-  constructor(private service:RestService,public translate:TranslateService) { }
+  constructor(private service:RestService,public translate:TranslateService,private router:Router) { }
 
   ngOnInit() {
     this.myForm = new FormGroup({
@@ -40,7 +41,7 @@ export class LendBooksComponent implements OnInit {
     let url = `prestarLibro/${controls["isbn"].value}/${controls["person_name"].value}`;
     this.service.queryPostRegular(url,loanData).subscribe(
       response => {
-        let result = response.json();
+        let result = response;
         if (result) {          
           swal({
             title: this.translate.instant("alerts.success"),
@@ -51,24 +52,25 @@ export class LendBooksComponent implements OnInit {
             cancelButtonColor: "#d33",
             confirmButtonText: this.translate.instant("buttons.ok"),            
           }).then(result => {
-            return false;
+            
+          this.router.navigate(["/books"]); 
           });        
         } else {          
-          swal({
-            title: this.translate.instant("alerts.error"),
-            text: result.mensaje,
-            type: "error",
-            showCancelButton: false,
-            confirmButtonColor: "#3085d6",
-            cancelButtonColor: "#d33",
-            confirmButtonText: this.translate.instant("buttons.ok"),            
-          }).then(result => {
-            return false;
-          });
+         
         }
       },
       err => {
-        console.log(err);
+        swal({
+          title: this.translate.instant("alerts.error"),
+          text: err.json().message,
+          type: "error",
+          showCancelButton: false,
+          confirmButtonColor: "#3085d6",
+          cancelButtonColor: "#d33",
+          confirmButtonText: this.translate.instant("buttons.ok"),            
+        }).then(result => {
+          return false;
+        });
       }
     );
   }

@@ -23,8 +23,8 @@
     <tbody>
       <tr *ngFor="let loan of loans">
         <td>{{ loan.isbn }}</td>
-        <td>{{ loan.fechaSolicitud }}</td>
-        <td>{{ loan.fechaEntrega }}</td>
+        <td>{{ loan.fechaSolicitud | date }}</td>
+        <td>{{ loan.fechaEntrega | date }}</td>
         <td>{{ loan.nombreUsuario }}</td>        
       </tr>
     </tbody>

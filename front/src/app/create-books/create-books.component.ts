@@ -80,7 +80,7 @@ export class CreateBooksComponent implements OnInit {
     let url = `agregarLibro?isbn=${bookData.isbn}&nombre=${bookData.nombre}&cantidadInventario=${bookData.cantidadInventario}&cantidadDisponible=${bookData.cantidadDisponible}`;
     this.service.queryPostRegular(url, null).subscribe(
       response => {
-        let result = response.json();
+        let result = response;
         if (result) {          
           swal({
             title: this.translate.instant("alerts.success"),
@@ -91,7 +91,8 @@ export class CreateBooksComponent implements OnInit {
             cancelButtonColor: "#d33",
             confirmButtonText: this.translate.instant("buttons.ok"),            
           }).then(result => {
-            return false;
+            
+          this.router.navigate(["/books"]); 
           });        
         } else {          
           swal({
