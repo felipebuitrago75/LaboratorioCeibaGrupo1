@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { RestService } from '../services/rest.service';
 
 @Component({
   selector: 'app-lend-books',
@@ -8,13 +9,11 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 })
 export class LendBooksComponent implements OnInit {
   public myForm: FormGroup;
-  constructor() { }
+  constructor(private service:RestService) { }
 
   ngOnInit() {
     this.myForm = new FormGroup({
-      isbn: new FormControl("isbn", [Validators.required]),
-      loan_date: new FormControl("loan_date", [Validators.required]),
-      delivery_date: new FormControl("delivery_date", [Validators.required]),
+      isbn: new FormControl("isbn", [Validators.required]),      
       person_name: new FormControl("person_name", [Validators.required])
     });
   }
@@ -33,14 +32,23 @@ export class LendBooksComponent implements OnInit {
       return;
     }
 
-    const loanData = {
-      isbn: controls["isbn"].value,
-      loanDate: controls["loan_date"].value,
-      deliveryDate: controls["delivery_date"].value,
-      personName: controls["person_name"].value
+    const loanData = {      
     };
 
-    console.log(loanData);
+    let url = `prestarLibro/${controls["isbn"].value}/${controls["person_name"].value}`;
+    this.service.queryPostRegular(url,loanData).subscribe(
+      response => {
+        let result = response.json();
+        if (result) {          
+          //this.router.navigate(["/books"]);        
+        } else {          
+          console.log('error');
+        }
+      },
+      err => {
+        console.log(err);
+      }
+    );
   }
 
   /**
@@ -56,6 +64,10 @@ export class LendBooksComponent implements OnInit {
     }
 
     const result = control.hasError(validationType) && (control.dirty || control.touched);
+
+    return result;
   }
+
+
 
 }

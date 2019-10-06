@@ -25,6 +25,7 @@ import es from "@angular/common/locales/es";
 import { registerLocaleData } from "@angular/common";
 import { LOCALE_ID } from "@angular/core";
 import { LendBooksComponent } from './lend-books/lend-books.component';
+import { LoansComponent } from './loans/loans.component';
 defineLocale("es", esLocale);
 registerLocaleData(es);
 
@@ -35,7 +36,8 @@ registerLocaleData(es);
     LayoutComponent,
     LoginComponent,
     CreateBooksComponent,
-    LendBooksComponent    
+    LendBooksComponent,
+    LoansComponent    
   ],
   imports: [
     BrowserModule,

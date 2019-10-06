@@ -50,19 +50,13 @@ export class LoginComponent implements OnInit {
     };
     let email = controls["email"].value;
     let password = controls["password"].value;
-    let url = `validarUsuario?nombreUsuario=${email}&contrasenia=${password}`;
-    console.log(url);
-    this.router.navigate(["/books"]);
-    
+    let url = `validarUsuario?nombreUsuario=${email}&contrasenia=${password}`;        
+    this.router.navigate(["/books"]);        
     /* this.service.queryExternalApi(url).subscribe(
       response => {
         let result = response.json();
-        if (result) {
-          console.log('autenticado!');
-          let token = "Bearer " + result.token;
-          localStorage.setItem("token", token);
-          localStorage.setItem("user", JSON.stringify(result.user));
-        
+        if (result) {          
+          this.router.navigate(["/books"]);        
         } else {          
           console.log('error');
         }
@@ -81,12 +75,15 @@ export class LoginComponent implements OnInit {
    */
   controlHasError(controlName: string, validationType: string): boolean {
     const control = this.myForm.controls[controlName];
+    
     if (!control) {
       return false;
     }
 
     const result =
       control.hasError(validationType) && (control.dirty || control.touched);      
+      
+    return result;   
   }
 
 }

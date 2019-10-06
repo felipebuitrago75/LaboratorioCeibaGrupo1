@@ -15,20 +15,27 @@
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active" routerLinkActive="active">
         <a class="nav-link" routerLink="/books"
-          >Libros disponibles <span class="sr-only">(current)</span></a
+          >{{ "forms.available_books" | translate }} <span class="sr-only">(current)</span></a
         >
       </li>
       <li class="nav-item" routerLinkActive="active">
-        <a class="nav-link" routerLink="/books-loan">Préstamo</a>
+          <a class="nav-link" routerLink="/loans">{{ "forms.loans" | translate }}</a>
+        </li>
+      <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link" routerLink="/books-loan">{{ "forms.do_loan" | translate }}</a>
       </li>
     </ul>
     <form class="form-inline my-2 my-lg-0">
+      <select name="language" [(ngModel)]="language" class="form-control" (change)="changeLanguage()">
+        <option value="es">{{"forms.spanish" | translate}}</option>
+        <option value="en">{{"forms.english" | translate}}</option>
+      </select>
       <button
         class="btn btn-outline-success my-2 my-sm-0"
         type="submit"
         routerLink="/"
       >
-        Cerrar sesión
+      {{ "forms.logout" | translate }}
       </button>
     </form>
   </div>

@@ -15,6 +15,7 @@ export class CreateBooksComponent implements OnInit {
   private isbn: number = null;
   private name: string = null;
   private quantity: number = null;
+  private availableQuantity: number = null;
   public myForm: FormGroup;
   constructor(
     private translate: TranslateService,
@@ -27,11 +28,13 @@ export class CreateBooksComponent implements OnInit {
     this.isbn = this.route.snapshot.queryParams["isbn"];
     this.name = this.route.snapshot.queryParams["name"];
     this.quantity = this.route.snapshot.queryParams["quantity"];
+    this.availableQuantity = this.route.snapshot.queryParams["available_quantity"];
 
     this.myForm = new FormGroup({
       isbn: new FormControl("isbn", [Validators.required]),
       name: new FormControl("name", [Validators.required]),
-      quantity: new FormControl("quantity", [Validators.required])
+      quantity: new FormControl("quantity", [Validators.required]),
+      available_quantity: new FormControl("available_quantity", [Validators.required])
     });
 
     if (null !== this.isbn && undefined !== this.isbn) {
@@ -45,6 +48,10 @@ export class CreateBooksComponent implements OnInit {
 
     if (null !== this.quantity && undefined !== this.quantity) {
       this.myForm.controls["quantity"].setValue(this.quantity);
+    }
+
+    if (null !== this.availableQuantity && undefined !== this.availableQuantity) {
+      this.myForm.controls["available_quantity"].setValue(this.availableQuantity);
     }
   }
 
@@ -63,12 +70,26 @@ export class CreateBooksComponent implements OnInit {
     }
 
     const bookData = {
-      isbn: controls["isbn"].value,
-      nombre: controls["name"].value,
-      cantidadInventario: controls["quantity"].value
+      ISBN: controls["isbn"].value,
+      NOMBRE: controls["name"].value,
+      CANTIDAD_INVENTARIO: controls["quantity"].value,
+      CANTIDAD_DISPONIBLE: controls["available_quantity"].value
     };
-
-    console.log(bookData);
+    
+    let url = `agregarLibro`;
+    this.service.queryPostRegular(url,bookData).subscribe(
+      response => {
+        let result = response.json();
+        if (result) {          
+          //this.router.navigate(["/books"]);        
+        } else {          
+          console.log('error');
+        }
+      },
+      err => {
+        console.log(err);
+      }
+    );
   }
 
   /**
@@ -85,5 +106,7 @@ export class CreateBooksComponent implements OnInit {
 
     const result =
       control.hasError(validationType) && (control.dirty || control.touched);
+
+      return result;
   }
 }
