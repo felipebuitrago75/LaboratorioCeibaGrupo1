@@ -44,7 +44,6 @@ public class BibliotecaServicioImpl implements BibliotecaServicio {
 		CriteriaBuilder cb = entityManager.getCriteriaBuilder();
 		CriteriaQuery<Libro> query = cb.createQuery(Libro.class);
 		Root<Libro> libro = query.from(Libro.class);
-
 		Path<String> isbnPath = libro.get("isbn");
 		List<Predicate> predicates = new ArrayList<>();
 		predicates.add(cb.like(isbnPath, isbn));

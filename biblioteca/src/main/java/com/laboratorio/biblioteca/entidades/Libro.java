@@ -5,8 +5,6 @@ import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -25,13 +23,8 @@ public class Libro {
 	 * Atributo que representa el identificador del libro
 	 */
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int idLibro;
-	/**
-	 * Atributo que representa el isbn del libro
-	 */
 	@Column(name = "ISBN")
-	private String isbn;
+	private Long isbn;
 	/**
 	 * Atributo que representa el nombre del libro
 	 */
@@ -55,7 +48,7 @@ public class Libro {
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "idPrestamo")
 	private List<Prestamo> prestamos;
 
-	public Libro(String isbn, String nombre, int cantidadInventario, int cantidadDisponible) {
+	public Libro(Long isbn, String nombre, int cantidadInventario, int cantidadDisponible) {
 
 		this.isbn = isbn;
 		this.nombre = nombre;
@@ -103,28 +96,14 @@ public class Libro {
 	 * 
 	 * @return nombre el valor el isbn del libro
 	 */
-	public String getIsbn() {
+	public Long getIsbn() {
 		return isbn;
-	}
-
-	/**
-	 * @return the idLibro
-	 */
-	public int getIdLibro() {
-		return idLibro;
-	}
-
-	/**
-	 * @param idLibro the idLibro to set
-	 */
-	public void setIdLibro(int idLibro) {
-		this.idLibro = idLibro;
 	}
 
 	/**
 	 * @param isbn the isbn to set
 	 */
-	public void setIsbn(String isbn) {
+	public void setIsbn(Long isbn) {
 		this.isbn = isbn;
 	}
 
