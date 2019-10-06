@@ -80,9 +80,29 @@ export class BooksComponent implements OnInit {
       response => {
         let result = response.json();
         if (result) {          
-          //this.router.navigate(["/books"]);        
+          swal({
+            title: this.translate.instant("alerts.success"),
+            text: this.translate.instant("alerts.deleted_book"),
+            type: "error",
+            showCancelButton: false,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: this.translate.instant("buttons.ok"),            
+          }).then(result => {
+            return false;
+          });        
         } else {          
-          console.log('error');
+          swal({
+            title: this.translate.instant("alerts.error"),
+            text: this.translate.instant("alerts.book_doesnt_exist"),
+            type: "error",
+            showCancelButton: false,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: this.translate.instant("buttons.ok"),            
+          }).then(result => {
+            return false;
+          });
         }
       },
       err => {

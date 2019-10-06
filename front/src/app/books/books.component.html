@@ -26,9 +26,7 @@
         <td>{{ book.nombre }}</td>
         <td>{{ book.cantidadInventario }}</td>
         <td>{{ book.cantidadDisponible }}</td>
-        <td>
-          <button class="btn btn-info" routerLink="/books-form" [queryParams]="{isbn:book.isbn,name:book.nombre,quantity:book.cantidadInventario,available_quantity:book.cantidadDisponible}">Editar</button>
-          &nbsp;
+        <td>          
           <button class="btn btn-danger" (click)="confirmDelete(book.isbn)">{{"forms.delete" | translate}}</button>
         </td>
       </tr>
